@@ -1,0 +1,22 @@
+@import "../Navigation/Header.css";
+
+body {
+  margin: 0;
+}
+
+.content {
+  background-color: #FFFFFF;
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+}
+
+.App {
+  background-color: #FFFFFF;
+  text-align: center;
+  font-size: calc(12px + 2vmin);
+  color: black;
+}
+
+.App-link {
+  color: #61dafb;
+}
