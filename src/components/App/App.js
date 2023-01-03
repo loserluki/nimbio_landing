@@ -4,8 +4,19 @@ import {Container, CssBaseline, Box, Grid} from "@mui/material";
 
 import './App.css';
 
+import Header from '../Navigation/Header';
+import SampleForm from '../Forms/SampleForm';
 
-import Header from '../Navigation/Header.js';
+const format_content = {
+    display: "grid",
+    gridAutoColumns: "1fr",
+    gridAutoFlow: "column"
+};
+
+const format_content_box = {
+    p: 2,
+    border: '1px dashed grey'
+};
 
 function App() {
   return (
@@ -13,9 +24,9 @@ function App() {
           <CssBaseline />
           <Header />
           <Container fixed>
-              <Grid container spacing={{xs: 2, md: 3}} columns={{xs: 4, md: 12, lg: 12}} justifyContent="space-evenly" alignItems="flex-start">
+              <Grid container spacing={{xs: 2, md: 1}} columns={{xs: 4, md: 12, lg: 12}} justifyContent="space-evenly" alignItems="flex-start">
                   <Grid item xs={12} md={6} lg={2}>
-                      <Box sx={{p:2, border: '1px dashed grey'}}>
+                      <Box sx={format_content_box}>
                           <h1>Residents</h1>
                           <p>Nimbio is designed to maximize the security and convenience for residents of gated properties and buzzer buildings. Eliminate 4-digit codes and buzz to enter, issue virtual keys, and add or revoke access from anywhere. Control access with your phone no matter where you are.</p>
                       </Box>
@@ -24,6 +35,7 @@ function App() {
                       <Box sx={{p:2, border: '1px dashed grey'}}>
                           <h1>Property Managers</h1>
                           <p>Improve the safety and convenience of your tenants with Nimbio. Issue or restrict access instantly via the Nimbio Community Manager interface. Manage move-in and move-outs with a single click – no more physical keys to manage.</p>
+                          <SampleForm />
                       </Box>
                   </Grid>
                   <Grid item xs={12} md={6} lg={2}>

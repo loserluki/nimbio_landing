@@ -7,7 +7,19 @@ import './Header.css'
 const Header = () => {
     return (
         <Container sticky>
-
+            <Grid container direction='row' justifyContent='space-between' alignItems='flex-start'>
+                <Box sx={{p: 2, backgroundColor: "#0583AD", border: "1px dashed white"}}>
+                    <div className='Nav-dropdown'>
+                        drop
+                        <div className='Nav-dropdown-content'>
+                            <button onClick={() => console.log("button clicked")}>lineitem</button>
+                            <button onClick={() => console.log("button clicked")}>lineitem</button>
+                            <button onClick={() => console.log("button clicked")}>lineitem</button>
+                            <button onClick={() => console.log("button clicked")}>lineitem</button>
+                        </div>
+                    </div>
+                </Box>
+            </Grid>
         </Container>
 
 
