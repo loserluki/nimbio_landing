@@ -1,40 +1,84 @@
 import React, { useState } from 'react';
 
-import {Container, Grid, TextField} from "@mui/material";
+import {Container, Grid, Button, TextField} from "@mui/material";
 
 const SampleForm = () => {
 
-    const [name_f, setname_f] = useState(null);
-    const [name_l, setname_l] = useState(null);
-    const [phone, setphone] = useState(null);
-    const [phone_v, setphone_v] = useState(null);
-    const [email, setemail] = useState(null);
-    const [email_v, setemail_v] = useState(null);
-    const [title, settitle] = useState(null);
-    const [addr, setaddr] = useState(null);
+    const [nameFirst, setNameFirst] = useState(null);
+    const [nameLast, setNameLast] = useState(null);
+    const [phone, setPhone] = useState(null);
+    const [phoneV, setPhoneV] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [emailV, setEmailV] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [addr, setAddr] = useState(null);
+
+    let VALID = true;
+    let NAMEF = false;
+    let NAMEL = false;
+    let PHONE = false;
+    let EMAIL = false;
+    let TITLE = false;
+    let ADDR = false;
 
     const format_grid = {
         display: "grid",
         gridTemplateColumns: "repeat(5, 1fr)"
     };
 
-    const handleChange = (e) => {
-        console.log("field changed to ", e.target.value);
+    const handleSubmit = () => {
+        console.log("in fields: ", nameFirst, nameLast, phone, phoneV, email, emailV, title, addr);
+        if (nameFirst) { NAMEF = true; }
+        if (nameLast) { NAMEL = true; }
+        if (phone) {
+            if (phone === phoneV) {
+                PHONE = true;
+            } else {
+                console.log("phone/V doesnt match");
+            }
+        } else {
+            console.log("phone invalid");
+        }
+        if (email) {
+            if (email === emailV) {
+                EMAIL = true;
+            } else {
+                console.log("email/V doesnt match");
+            }
+        } else {
+            console.log("email invalid");
+        }
+        if (title) { TITLE = true; }
+        if (addr) { ADDR = true; }
 
-    }
+        if (NAMEF && NAMEL && PHONE && EMAIL && TITLE && ADDR) {
+            VALID = true;
+            console.log("form valid, submitting");
+            alert('form submitted!');
+        } else {
+            VALID = false;
+            console.log("form invalid!", VALID);
+        }
+    };
 
     return (
         <Container fixed>
-            <Grid container direction='column'>
-                <Grid container direction='row'>
+            <Grid container
+                  direction='column'
+                  alignItems='center'
+                  rowSpacing={1}
+            >
+                <Grid container
+                      direction='row'
+                >
                     <Grid item>
                         <TextField
                             id="name_first"
                             label="First Name"
                             variant="standard"
                             size="small"
-                            value={name_f}
-                            onChange={e => handleChange(e)}
+                            value={nameFirst}
+                            onChange={(e) => setNameFirst(e.target.value)}
                         />
                     </Grid>
                     <Grid item>
@@ -43,19 +87,21 @@ const SampleForm = () => {
                             label="Last Name"
                             variant="standard"
                             size="small"
-                            value={name_l}
-                            onChange={e => handleChange(e)}
+                            value={nameLast}
+                            onChange={(e) => setNameLast(e.target.value)}
                         />
                     </Grid>
                 </Grid>
-                <Grid container direction='row'>
+                <Grid container
+                      direction='row'
+                >
                     <Grid item>
                         <TextField id="phone"
                                    label="Phone number"
                                    variant="standard"
                                    size="small"
                                    value={phone}
-                                   onChange={e => handleChange(e)}
+                                   onChange={(e) => setPhone(e.target.value)}
                         />
                     </Grid>
                     <Grid item>
@@ -63,12 +109,14 @@ const SampleForm = () => {
                                    label="Phone number (verify)"
                                    variant="standard"
                                    size="small"
-                                   value={phone_v}
-                                   onChange={e => handleChange(e)}
+                                   value={phoneV}
+                                   onChange={(e) => setPhoneV(e.target.value)}
                         />
                     </Grid>
                 </Grid>
-                <Grid container direction='row'>
+                <Grid container
+                      direction='row'
+                >
                     <Grid item>
                         <TextField
                             id="email"
@@ -76,7 +124,7 @@ const SampleForm = () => {
                             variant="standard"
                             size="small"
                             value={email}
-                            onChange={e => handleChange(e)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </Grid>
                     <Grid item>
@@ -85,8 +133,8 @@ const SampleForm = () => {
                             label="Email (verify)"
                             variant="standard"
                             size="small"
-                            value={email_v}
-                            onChange={e => handleChange(e)}
+                            value={emailV}
+                            onChange={(e) => setEmailV(e.target.value)}
                         />
                     </Grid>
                 </Grid>
@@ -98,7 +146,7 @@ const SampleForm = () => {
                             variant="standard"
                             size="small"
                             value={title}
-                            onChange={e => handleChange(e)}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </Grid>
                 </Grid>
@@ -110,9 +158,23 @@ const SampleForm = () => {
                             variant="standard"
                             size="small"
                             value={addr}
-                            onChange={e => handleChange(e)}
+                            onChange={(e) => setAddr(e.target.value)}
                         />
                     </Grid>
+                </Grid>
+                <Grid item>
+                    <Button
+                        variant="contained"
+                        onClick={() => {
+                            handleSubmit();
+                        }}>
+                        Submit
+                    </Button>
+                    <Button
+                        variant="contained"
+                        onClick={() => console.log(VALID)}>
+                        Check VALID
+                    </Button>
                 </Grid>
             </Grid>
         </Container>
