@@ -36,12 +36,12 @@ function App() {
                   </Grid>
                   <Grid item>
                       <Grid container direction={"row"}>
-                          <Grid item>
+                          <Grid item xs={12} md={6}>
                               <PropManModule />
                           </Grid>
-                      </Grid>
-                      <Grid item>
-                          <SampleForm />
+                          <Grid item xs={12} md={6}>
+                              <SampleForm />
+                          </Grid>
                       </Grid>
                   </Grid>
               </Grid>
