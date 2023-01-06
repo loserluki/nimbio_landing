@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 
-import {Container, Grid, Button, TextField} from "@mui/material";
+import {Box, Grid, Button, TextField} from "@mui/material";
 
 const SampleForm = () => {
 
-    const [nameFirst, setNameFirst] = useState(null);
-    const [nameLast, setNameLast] = useState(null);
-    const [phone, setPhone] = useState(null);
-    const [phoneV, setPhoneV] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [emailV, setEmailV] = useState(null);
-    const [title, setTitle] = useState(null);
-    const [addr, setAddr] = useState(null);
+    //input variables
+    const [nameFirst, setNameFirst] = useState("");
+    const [nameLast, setNameLast] = useState("");
+    const [phone, setPhone] = useState("");
+    const [phoneV, setPhoneV] = useState("");
+    const [email, setEmail] = useState("");
+    const [emailV, setEmailV] = useState("");
+    const [title, setTitle] = useState("");
+    const [addr, setAddr] = useState("");
 
+    //input flags
     let VALID = true;
     let NAMEF = false;
     let NAMEL = false;
@@ -30,7 +32,7 @@ const SampleForm = () => {
         console.log("in fields: ", nameFirst, nameLast, phone, phoneV, email, emailV, title, addr);
         if (nameFirst) { NAMEF = true; }
         if (nameLast) { NAMEL = true; }
-        if (phone) {
+        if (phone.length === 10) {
             if (phone === phoneV) {
                 PHONE = true;
             } else {
@@ -62,7 +64,7 @@ const SampleForm = () => {
     };
 
     return (
-        <Container fixed>
+        <Box>
             <Grid container
                   direction='column'
                   alignItems='center'
@@ -75,7 +77,7 @@ const SampleForm = () => {
                         <TextField
                             id="name_first"
                             label="First Name"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={nameFirst}
                             onChange={(e) => setNameFirst(e.target.value)}
@@ -85,7 +87,7 @@ const SampleForm = () => {
                         <TextField
                             id="name_last"
                             label="Last Name"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={nameLast}
                             onChange={(e) => setNameLast(e.target.value)}
@@ -96,32 +98,38 @@ const SampleForm = () => {
                       direction='row'
                 >
                     <Grid item>
-                        <TextField id="phone"
-                                   label="Phone number"
-                                   variant="standard"
-                                   size="small"
-                                   value={phone}
-                                   onChange={(e) => setPhone(e.target.value)}
+                        <TextField
+                            error={((!VALID && !PHONE) || (phone.length > 10))}
+                            id="phone"
+                            label="Phone number"
+                            variant="outlined"
+                            size="small"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                         />
                     </Grid>
                     <Grid item>
-                        <TextField id="phone_v"
-                                   label="Phone number (verify)"
-                                   variant="standard"
-                                   size="small"
-                                   value={phoneV}
-                                   onChange={(e) => setPhoneV(e.target.value)}
+                        <TextField
+                            error={phone !== phoneV}
+                            id="phone_v"
+                            label="Phone number (verify)"
+                            variant="outlined"
+                            size="small"
+                            value={phoneV}
+                            onChange={(e) => setPhoneV(e.target.value)}
                         />
                     </Grid>
                 </Grid>
-                <Grid container
-                      direction='row'
+                <Grid
+                    container
+                    direction='row'
                 >
                     <Grid item>
                         <TextField
+                            error={(!VALID)}
                             id="email"
                             label="Email"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -131,7 +139,7 @@ const SampleForm = () => {
                         <TextField
                             id="email_v"
                             label="Email (verify)"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={emailV}
                             onChange={(e) => setEmailV(e.target.value)}
@@ -143,7 +151,7 @@ const SampleForm = () => {
                         <TextField
                             id="title"
                             label="Title"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
@@ -155,7 +163,7 @@ const SampleForm = () => {
                         <TextField
                             id="addr"
                             label="Address"
-                            variant="standard"
+                            variant="outlined"
                             size="small"
                             value={addr}
                             onChange={(e) => setAddr(e.target.value)}
@@ -172,13 +180,13 @@ const SampleForm = () => {
                     </Button>
                     <Button
                         variant="contained"
-                        onClick={() => console.log(VALID)}>
+                        onClick={() => console.log(PHONE)}>
                         Check VALID
                     </Button>
                 </Grid>
             </Grid>
-        </Container>
-    )
+        </Box>
+    );
 }
 
 export default SampleForm;
