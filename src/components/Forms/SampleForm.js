@@ -200,11 +200,3 @@ export default SampleForm;
 // address (add another)
 //     installation contact first last
 //     installation contact email phone
-
-// lukida inovi
-// vegas hardware tech, help build the boxes, also help with shipping
-
-// down to our last 6 units
-
-// william jones, software engineer
-// brian dilano,

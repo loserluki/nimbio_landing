@@ -1,51 +1,58 @@
 import React from 'react';
 
-import {Container, CssBaseline, Box, Grid} from "@mui/material";
+import {ThemeProvider} from '@mui/material/styles'
+import {Container, CssBaseline, Box, Grid, Paper} from "@mui/material";
 
 import './App.css';
 
+import Themes from '../Themes/Themes';
 import Header from '../Navigation/Header';
-import SplashImage from '../Content/SplashImage'
+import SplashImage from '../Content/SplashImage';
 import SampleForm from '../Forms/SampleForm';
 import PropManModule from "../Content/PropManModule";
 
-const format_content = {
+const formatContent = {
     display: "grid",
     gridAutoColumns: "1fr",
     gridAutoFlow: "column"
 };
 
-const format_content_box = {
-    p: 2,
-    border: '1px dashed grey'
-};
+const currentTheme = Themes();
 
 function App() {
   return (
       <React.Fragment>
           <CssBaseline />
-          <Header />
+          <ThemeProvider theme={currentTheme}>
+          <Header theme={currentTheme} />
 
           <SplashImage />
 
           <Container fixed>
               <Grid container direction={"column"} alignItems={"center"} spacing={2}>
                   <Grid item>
-                      <h2>Content</h2>
+                      <h2>Full width content</h2>
                       <p>it goes here</p>
                   </Grid>
                   <Grid item>
-                      <Grid container direction={"row"}>
+                      <Grid container direction={"row"} spacing={6}>
                           <Grid item xs={12} md={6}>
-                              <PropManModule />
+                              <Box sx={formatContent}>
+                                  <PropManModule />
+                              </Box>
                           </Grid>
                           <Grid item xs={12} md={6}>
-                              <SampleForm />
+                              <Box sx={formatContent}>
+                                  <Paper elevation={3}>
+                                      <SampleForm />
+                                  </Paper>
+                              </Box>
                           </Grid>
                       </Grid>
                   </Grid>
               </Grid>
           </Container>
+          </ThemeProvider>
       </React.Fragment>
   );
 }

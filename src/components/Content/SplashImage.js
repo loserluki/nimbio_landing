@@ -4,18 +4,10 @@ import generic from './Generic.png';
 
 import {Grid, Box} from "@mui/material";
 
-const styles = {
-    splashBack: {
-        height: 25,
-        backgroundImage: {generic},
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-    }
-};
 const SplashImage = () => {
     return (
         <Box color='#FFFFFF'>
-            <Grid container spacing={2} alignItems={"center"} direction={"column"} style={styles}>
+            <Grid container spacing={2} alignItems={"center"} direction={"column"} sx={{height: '30vh', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundImage: `url(${generic})`}}>
                 <Grid item>
                     Nimbio
                 </Grid>
